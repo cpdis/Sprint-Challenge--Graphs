@@ -52,9 +52,7 @@ def reverse(direction):
         return 'e'
     
 # Add all of the exits to visited list with the current room ID as the key
-visited[player.currentRoom.id] = player.currentRoom.getExits() 
-print(visited[player.currentRoom.id])
-print(len(visited[player.currentRoom.id]))
+visited[player.currentRoom.id] = player.currentRoom.getExits()
 
 # Start looping through the rest of the rooms
 while len(visited) < 499:
@@ -64,6 +62,15 @@ while len(visited) < 499:
         visited[player.currentRoom.id] = player.currentRoom.getExits()
         # Remove the last element from reverse_path (so that a new reverse path can be added later)
         visited[player.currentRoom.id].remove(reverse_path[-1])
+
+    # If you hit a dead end (no directions to move) reverse the direction until a new direction is found
+    while len(visited[player.currentRoom.id]) == 0:
+        # Get the last direction from the reverse_path array (pop() removes the last element and returns it)
+        reversed = reverse_path.pop()
+        # Add the move to the traversalPath array
+        traversalPath.append(reversed)
+        # Move the player back in the opposite direction
+        player.travel(reversed)
     
     # Get the first direction in the array of directions for the current room
     move = visited[player.currentRoom.id].pop(0)
@@ -81,6 +88,8 @@ visited_rooms.add(player.currentRoom)
 for move in traversalPath:
     player.travel(move)
     visited_rooms.add(player.currentRoom)
+
+# print(traversalPath)
 
 if len(visited_rooms) == len(roomGraph):
     print(
