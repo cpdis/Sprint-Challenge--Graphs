@@ -37,6 +37,8 @@ that traversal to a reverse_path array
 
 # FILL THIS IN
 traversalPath = []
+reverse_path = []
+visited = {}
 
 # TRAVERSAL TEST
 visited_rooms = set()
