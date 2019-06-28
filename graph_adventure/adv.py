@@ -51,6 +51,13 @@ def reverse(direction):
     elif direction is 'w':
         return 'e'
     
+# Add all of the exits to visited list with the current room ID as the key
+visited[player.currentRoom.id] = player.currentRoom.getExits() 
+
+# Start looping through the rest of the rooms
+while len(visited) < 499:
+    
+
 # TRAVERSAL TEST
 visited_rooms = set()
 player.currentRoom = world.startingRoom
