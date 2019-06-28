@@ -40,6 +40,17 @@ traversalPath = []
 reverse_path = []
 visited = {}
 
+# Create a helper function to reverse the N, S, E, W direction
+def reverse(direction):
+    if direction is 'n':
+        return 's'
+    elif direction is 's':
+        return 'n'
+    elif direction is 'e':
+        return 'w'
+    elif direction is 'w':
+        return 'e'
+    
 # TRAVERSAL TEST
 visited_rooms = set()
 player.currentRoom = world.startingRoom
